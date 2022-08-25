@@ -35,5 +35,8 @@
     "react-test-renderer": "^18.2.0",
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.10.0"
+  },
+  "resolutions": {
+    "tough-cookie": "4.0.0"
   }
 }
