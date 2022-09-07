@@ -2,5 +2,6 @@
 
 module.exports = {
   testMatch: ["<rootDir>/app/**/?(*.)(spec|test).js"],
-  testEnvironment: 'jsdom'
+  testEnvironment: 'jsdom',
+  globalSetup: "<rootDir>/globalSetup.js"
 };

@@ -24,7 +24,7 @@ const RelativeDateTime = ({ value }) => {
 
   return (
     <time
-      title={date.toLocaleString(DateTime.DATETIME_SHORT)}
+      title={date.toLocaleString(DateTime.DATETIME_SHORT, { locale: 'en-AU' })}
       dateTime={value}
     >
       {formatDate(date)}
