@@ -38,7 +38,6 @@ exports[`Like button sends a like request to the API 1`] = `
       @
       bob
     </a>
-    
   </p>
   -- 
   <a
@@ -102,7 +101,6 @@ exports[`Like button sends a like request to the API 2`] = `
       @
       bob
     </a>
-    
   </p>
   -- 
   <a
@@ -166,7 +164,6 @@ exports[`Like button sends a like request to the API 3`] = `
       @
       bob
     </a>
-    
   </p>
   -- 
   <a
@@ -261,7 +258,6 @@ exports[`mention tracking links to mentioned users 1`] = `
       @
       bob
     </a>
-    
   </p>
   -- 
   <a
