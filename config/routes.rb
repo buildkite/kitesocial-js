@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   resources :chirps do
     resource :like
+    resource :reaction
   end
 
   resources :users do

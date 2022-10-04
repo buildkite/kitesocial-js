@@ -10,14 +10,20 @@ export default class Chirp extends React.PureComponent {
     chirp: PropTypes.shape({
       content: PropTypes.string.isRequired,
       author: PropTypes.object.isRequired,
-      mentions: PropTypes.arrayOf(
-        PropTypes.object
-      ).isRequired,
+      mentions: PropTypes.arrayOf(PropTypes.object).isRequired,
       created_at: PropTypes.string.isRequired,
       likes_count: PropTypes.number.isRequired,
       liked: PropTypes.bool.isRequired,
-      like_url: PropTypes.string.isRequired
-    }).isRequired
+      like_url: PropTypes.string.isRequired,
+      reactions: PropTypes.shape({
+        like_react_count: PropTypes.number,
+        lol_react_count: PropTypes.number,
+        vom_react_count: PropTypes.number,
+        reacted: PropTypes.bool,
+        reaction: PropTypes.string,
+        reaction_url: PropTypes.string,
+      }),
+    }).isRequired,
   };
 
   state = {
