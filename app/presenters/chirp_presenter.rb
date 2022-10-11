@@ -25,8 +25,8 @@ class ChirpPresenter
         like_react_count: @chirp.reactions.where(type: :lol).count,
         lol_react_count: @chirp.reactions.where(type: :lol).count,
         vom_react_count: @chirp.reactions.where(type: :vom).count,
-        reacted: @current_user.reacted?(@chirp),
-        reaction: @current_user.reaction(@chirp),
+        reacted: @current_user && @current_user.reacted?(@chirp),
+        reaction: @current_user && @current_user.reaction(@chirp),
         reaction_url: Rails.application.routes.url_helpers.chirp_reaction_url(@chirp, only_path: true)
       }
     }
