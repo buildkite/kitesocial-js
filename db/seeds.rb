@@ -10,22 +10,22 @@ voldemort = User.create_with(name: "Voldemort", password: "thedarkmark").find_or
 
 bellatrix = User.create_with(name: "BellatrixLestrange", password: "ilovevoldy").find_or_create_by!(email: "bella@deatheaters.com")
 
-chirp_1 = Chirp.create(author: harry, content: "First Chirp! Hi friends!")
-chirp_2 = Chirp.create(author: ron, content: "Can't wait for the quidditch world cup!!!!!")
-chirp_3 = Chirp.create(author: hermione, content: "I am rather excited for exams, if only @RonWeasley could focus.")
-chirp_4 = Chirp.create(author: ron, content: "I'm focusing on the important things in life, @HermioneGranger.")
-chirp_5 = Chirp.create(author: bellatrix, content: "Off to do some super secret death eater business!")
-chirp_6 = Chirp.create(author: voldemort, content: "Who wants to join my @HarryPotter hunt? 😎")
-chirp_7 = Chirp.create(author: harry, content: "Wait, what did @Voldemort just say?")
+Chirp.find_or_create_by!(author: harry, content: "First Chirp! Hi friends!")
+Chirp.find_or_create_by!(author: ron, content: "Can't wait for the quidditch world cup!!!!!")
+Chirp.find_or_create_by!(author: hermione, content: "I am rather excited for exams, if only @RonWeasley could focus.")
+Chirp.find_or_create_by!(author: ron, content: "I'm focusing on the important things in life, @HermioneGranger.")
+Chirp.find_or_create_by!(author: bellatrix, content: "Off to do some super secret death eater business!")
+Chirp.find_or_create_by!(author: voldemort, content: "Who wants to join my @HarryPotter hunt? 😎")
+Chirp.find_or_create_by!(author: harry, content: "Wait, what did @Voldemort just say?")
 
-harry.followers << ron
-harry.followers << hermione
-harry.followers << voldemort
+Follow.find_or_create_by!(friend: harry, follower: ron)
+Follow.find_or_create_by!(friend: harry, follower: hermione)
+Follow.find_or_create_by!(friend: harry, follower: voldemort)
 
-ron.followers << harry
-ron.followers << hermione
+Follow.find_or_create_by!(friend: ron, follower: harry)
+Follow.find_or_create_by!(friend: ron, follower: hermione)
 
-hermione.followers << harry
-hermione.followers << ron
+Follow.find_or_create_by!(friend: hermione, follower: harry)
+Follow.find_or_create_by!(friend: hermione, follower: ron)
 
-voldemort.followers << bellatrix
+Follow.find_or_create_by!(friend: voldemort, follower: bellatrix)
