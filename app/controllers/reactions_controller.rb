@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class ReactionsController < ApplicationController
-  skip_before_action :verify_authenticity_token
   before_action :set_chirp
 
   def create
