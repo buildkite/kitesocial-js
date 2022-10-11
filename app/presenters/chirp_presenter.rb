@@ -22,7 +22,7 @@ class ChirpPresenter
       liked: @current_user && @current_user.liked?(@chirp),
       like_url: Rails.application.routes.url_helpers.chirp_like_url(@chirp, only_path: true),
       reactions: {
-        like_react_count: @chirp.reactions.where(type: :lol).count,
+        like_react_count: @chirp.reactions.where(type: :like).count,
         lol_react_count: @chirp.reactions.where(type: :lol).count,
         vom_react_count: @chirp.reactions.where(type: :vom).count,
         reacted: @current_user && @current_user.reacted?(@chirp),
