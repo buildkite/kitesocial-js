@@ -1,0 +1,8 @@
+[data-reach-listbox-button] {
+  border: none;
+  padding: 0 5px 0 0;
+}
+
+[data-reach-listbox-popover] {
+  background-color: hsl(0, 0%, 20%);
+}

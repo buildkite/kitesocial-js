@@ -4,6 +4,7 @@ import document from 'global/document';
 
 import UserLink from './UserLink';
 import RelativeDateTime from './RelativeDateTime';
+import EmojiSelect, { EMOJI_OPTIONS } from './EmojiSelect';
 
 export default class Chirp extends React.PureComponent {
   static propTypes = {
@@ -27,6 +28,7 @@ export default class Chirp extends React.PureComponent {
   };
 
   state = {
+    reacting: false,
     liking: false,
     likeOverride: null,
     likesCountOverride: null
@@ -88,11 +90,77 @@ export default class Chirp extends React.PureComponent {
         });
     });
   };
-  
+
+
+  handleReactionChange = (reaction) => {
+    console.log(`Reaction changed to ${reaction}`);
+
+    if (this.state.reacting) {
+      return;
+    }
+
+    const { chirp: { reactions: { reaction_url } } } = this.props;
+
+    this.setState({ reacting: true }, () => {
+      fetch(
+        `${reaction_url}.json?reaction_type=${reaction}`,
+        {
+          // body: JSON.stringify({ reaction_type: reaction }), // <-- this is not working
+          headers: {
+            'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
+          },
+          method: 'POST'
+        }
+      )
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          }
+          this.setState({ reacting: false });
+        });
+    });
+  };
+
   renderLikesCount() {
     const likes = this.state.likesCountOverride !== null ? this.state.likesCountOverride : this.props.chirp.likes_count;
 
     return `${likes} like${likes === 1 ? '' : 's'}`;
+  }
+
+  renderReactionsCount() {
+    return (
+      <div style={{ display: "inline-block" }}>
+        <span
+          key="reaction-like"
+          role="img"
+          aria-label={EMOJI_OPTIONS.like.name}
+        >
+          {EMOJI_OPTIONS.like.emoji}
+        </span>
+        {" "}
+        <span>{this.props.chirp.reactions.like_react_count}</span>
+        {" "}
+        <span
+          key="reaction-lol"
+          role="img"
+          aria-label={EMOJI_OPTIONS.lol.name}
+        >
+          {EMOJI_OPTIONS.lol.emoji}
+        </span>
+        {" "}
+        <span>{this.props.chirp.reactions.lol_react_count}</span>
+        {" "}
+        <span
+          key="reaction-vom"
+          role="img"
+          aria-label={EMOJI_OPTIONS.vom.name}
+        >
+          {EMOJI_OPTIONS.vom.emoji}
+        </span>
+        {" "}
+        <span>{this.props.chirp.reactions.vom_react_count}</span>
+      </div>
+    );
   }
 
   render() {
@@ -127,6 +195,10 @@ export default class Chirp extends React.PureComponent {
         {this.renderLikesCount()}
         {' • '}
         {this.renderLikeButton()}
+        {' • '}
+        {this.renderReactionsCount()}
+        {' • '}
+        <EmojiSelect onChange={this.handleReactionChange} selected={this.props.chirp.reactions.reaction} />
       </div>
     );
   }
