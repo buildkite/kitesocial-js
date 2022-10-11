@@ -28,3 +28,12 @@ Once you've cloned the repo, run:
 ```
 
 Then you'll be able to spin up your server and run your specs!
+
+## Running kitesocial
+
+Run `rails s` to run the application. The application is accessible at `http://localhost:3000`
+
+Kitesocial uses `db/seeds.rb` to create an initial data set of Users and Chirps, as well as set up Follow relationships 
+between Users.
+
+You can log in as any of the users listed in `db/seeds.rb` using their `email` and `password` 🔐
