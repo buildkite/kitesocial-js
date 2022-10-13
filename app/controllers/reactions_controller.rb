@@ -18,7 +18,7 @@ class ReactionsController < ApplicationController
   end
 
   def destroy
-    current_user.reactions.delete(chirp: @chirp)
+    current_user.reactions.where(chirp: @chirp).destroy_all
 
     respond_to do |format|
       format.html do
